@@ -1,4 +1,4 @@
-resource_group_name = "Regroup_1inAjvNIXMMZZUCtl6lJc"
+resource_group_name = "Regroup_3a8WMBpL9KbWLSfqrZfd"
 
 #Network
 vnet_name           = "application-vnet"

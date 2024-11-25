@@ -11,6 +11,7 @@ This Terraform configuration sets up an Azure Load Balancer to distribute traffi
 - **Health Probe**: Monitors the health of VMs by checking connectivity on port 80.
 - **Load Balancer Rule**: Forwards traffic from the Load Balancer to the backend VMs.
 - **Windows VMs**: Creates a specified number of Windows VMs with IIS installed.
+  - Update: For security, ensured that data at rest is encrypted to protect the disks of your VMs.
 - **Network Security Group**: Allows inbound traffic on ports 80 (HTTP) and 3389 (RDP).
 
 ## Usage

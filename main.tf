@@ -12,8 +12,9 @@ resource "azurerm_windows_virtual_machine" "vm" {
   ]
 
   os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    caching                = "ReadWrite"
+    storage_account_type   = "Standard_LRS"
+    disk_encryption_set_id = azurerm_disk_encryption_set.disk_encryption_set.id
   }
 
   source_image_reference {
@@ -22,6 +23,29 @@ resource "azurerm_windows_virtual_machine" "vm" {
     sku       = "2019-Datacenter"
     version   = "latest"
   }
+
+  # Explicit dependency on the Key Vault
+  depends_on = [
+    azurerm_key_vault.kv
+  ]
+}
+
+# Disk Encryption Set
+resource "azurerm_disk_encryption_set" "disk_encryption_set" {
+  name                = "disk-encryption-set-${random_string.unique.result}"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
+
+  key_vault_key_id = azurerm_key_vault_key.disk_encryption_key.id
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  # Explicit dependency on the Key Vault
+  depends_on = [
+    azurerm_key_vault.kv
+  ]
 }
 
 # Custom Script Extension to install IIS and create Default.html

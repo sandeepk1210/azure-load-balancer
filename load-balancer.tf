@@ -7,6 +7,31 @@ resource "azurerm_public_ip" "app_lb_public_ip" {
   sku                 = "Standard"
 }
 
+# resource "azurerm_public_ip" "app_lb_public_ip" {
+#   name                = "app-lb-public-ip"
+#   location            = data.azurerm_resource_group.rg.location
+#   resource_group_name = data.azurerm_resource_group.rg.name
+#   allocation_method   = "Dynamic"
+#   sku                 = "Standard"
+# }
+
+
+# resource "azurerm_public_ip" "app_lb_public_ip" {
+#   name                = "app-lb-public-ip"
+#   location            = data.azurerm_resource_group.rg.location
+#   resource_group_name = data.azurerm_resource_group.rg.name
+#   allocation_method   = "Static"
+#   sku                 = "Basic"
+# }
+
+# resource "azurerm_public_ip" "app_lb_public_ip" {
+#   name                = "app-lb-public-ip"
+#   location            = data.azurerm_resource_group.rg.location
+#   resource_group_name = data.azurerm_resource_group.rg.name
+#   allocation_method   = "Dynamic"
+#   sku                 = "Basic"
+# }
+
 # Load Balancer
 resource "azurerm_lb" "app_lb" {
   name                = "app-lb"
